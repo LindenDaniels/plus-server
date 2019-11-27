@@ -4,7 +4,7 @@ const express = require('express')
 const xss = require('xss')
 const logger = require('../logger')
 const GroceryListService = require('./grocery-service')
-const { isWebUri } = require('valid-url')
+//const { isWebUri } = require('valid-url')
 
 const GroceryListRouter = express.Router()
 const bodyParser = express.json()
@@ -25,3 +25,5 @@ GroceryListRouter
     })
     .catch(next)
 })
+
+module.exports = GroceryListRouter
