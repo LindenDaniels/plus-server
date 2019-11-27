@@ -8,15 +8,15 @@ describe('Grocery service object', function() {
 
   let testGroceryLists = [
     {
-      list_name: 'Christmas',
+      name: 'Christmas',
       id: 1
     },
     {
-      list_name: 'Thanksgiving',
+      name: 'Potluck',
       id: 2
     },
     {
-      list_name: 'Halloween',
+      name: 'Back to school',
       id: 3
     }
   ];
