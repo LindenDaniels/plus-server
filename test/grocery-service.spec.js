@@ -1,12 +1,12 @@
 require('dotenv').config();
 const knex = require('knex');
 
-const GroceryListService = require('../src/GroceryLists/grocery-service');
+const ListService = require('../src/GroceryLists/grocery-service');
 
 describe('Grocery service object', function() {
   let db;
 
-  let testGroceryLists = [
+  let testLists = [
     {
       name: 'Christmas',
       id: 1
@@ -21,7 +21,9 @@ describe('Grocery service object', function() {
     }
   ];
 
-  //let newGroceryList =  { id: 4, folder_name: 'Grocery' } ;
+  let newList =  { id: 4, name: 'Thanksgiving' } ;
+
+  
 
   before('Get database instance', () => {
     db = knex({
@@ -34,19 +36,27 @@ describe('Grocery service object', function() {
     db.destroy();
   });
 
-  //beforeEach('Reset the test database', () => {
-    //return db.raw('TRUNCATE grocery_lists RESTART IDENTITY CASCADE')
-  //});
+ beforeEach('Reset the test database', () => {
+    return db.raw('TRUNCATE grocery_lists RESTART IDENTITY CASCADE')
+  });
 
-  //beforeEach('Insert test data into grocery-list table', () => {
-    //return db.into('').insert(testFolders);
-  //});
+  beforeEach('Insert test data into grocery_list table', () => {
+    return db.into('').insert(testLists);
+  });
 
-  describe('getAllGroceryLists', () => {
-    it('it returns all lists from grocery lists table', () => {
-      return GroceryListService.getAllGroceryLists(db).then(grocerylists => {
-        expect(grocerylists).to.have.deep.members(testGroceryLists);
+  describe('getAllLists', () => {
+    it('returns all lists from grocery lists table', () => {
+      return ListService.getAllLists(db).then(lists => {
+        expect(lists).to.have.deep.members(testLists);
       });
     });
   })
+
+  describe('addList', () => {
+    it('should add a list to the grocery list table', () => {
+      return ListService.insertList(db, newList).then(list => {
+        expect(list).to.eql(newList);
+      });
+    });
+  });
 });
