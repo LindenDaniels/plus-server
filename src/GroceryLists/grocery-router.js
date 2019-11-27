@@ -16,7 +16,7 @@ const serializeGroceryList = groceryList => ({
 
 
 GroceryListRouter
-.route('/grocery-lists')
+.route('/api/grocery-lists')
 
 .get((req, res, next) => {
     GroceryListService.getAllGroceryLists(req.app.get('db'))
