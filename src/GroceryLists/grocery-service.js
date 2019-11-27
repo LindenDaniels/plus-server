@@ -15,18 +15,25 @@ const GroceryListService = {
 
       getById(knex, id) {
         return knex
-          .from("grocery_lists")
-          .select("*")
-          .where("id", id)
+          .from('grocery_lists')
+          .select('*')
+          .where('id', id)
           .first();
       },
 
       deleteList(knex, id) {
-        return knex("grocery_lists")
+        return knex('grocery_lists')
           .where({ id })
           .delete();
       },
+
+      updateList(knex, id, newListFields) {
+        return knex('grocery_lists')
+          .where({ id })
+          .update(newListFields);
+      }
+    };
     
-}
+
 
 module.exports = GroceryListService;

@@ -94,4 +94,30 @@ GroceryListRouter
       .catch(next)
   })
 
+  .patch(bodyParser, (req, res, next) => {
+    const { name } = req.body
+    const folderToUpdate = { name }
+
+    const numberOfValues = Object.values(folderToUpdate).filter(Boolean).length
+    if (numberOfValues === 0) {
+      logger.error(`Invalid update without required fields`)
+      return res.status(400).json({
+        error: {
+          message: `Request body must content either 'name'.`
+        }
+      })
+    }
+
+    ListService.updateList(
+      req.app.get('db'),
+      req.params.List_id,
+      listToUpdate
+    )
+      .then(numRowsAffected => {
+        res.status(204).end()
+      })
+      .catch(next)
+  })
+
+
 module.exports = GroceryListRouter

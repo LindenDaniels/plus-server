@@ -1,2 +1,4 @@
 {"message":"name is required","level":"error"}
 {"message":"List with id 1 deleted.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"Invalid update without required fields","level":"error"}
