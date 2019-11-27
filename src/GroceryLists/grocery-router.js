@@ -81,4 +81,17 @@ GroceryListRouter
     res.json(serializeList(res.list))
   })
 
+  .delete((req, res, next) => {
+    const { list_id } = req.params
+    ListService.deleteList(
+      req.app.get('db'),
+      list_id
+    )
+      .then(numRowsAffected => {
+        logger.info(`List with id ${list_id} deleted.`)
+        res.status(204).end()
+      })
+      .catch(next)
+  })
+
 module.exports = GroceryListRouter

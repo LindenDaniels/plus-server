@@ -20,6 +20,12 @@ const GroceryListService = {
           .where("id", id)
           .first();
       },
+
+      deleteList(knex, id) {
+        return knex("grocery_lists")
+          .where({ id })
+          .delete();
+      },
     
 }
 
