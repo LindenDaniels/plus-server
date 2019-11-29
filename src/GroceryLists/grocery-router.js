@@ -1,123 +1,56 @@
-  
-const path = require('path')
 const express = require('express')
-const xss = require('xss')
-const logger = require('../logger')
-const ListService = require('./grocery-service')
-//const { isWebUri } = require('valid-url')
+const ListsService = require('./lists-service')
 
-const GroceryListRouter = express.Router()
-const bodyParser = express.json()
+const listsRouter = express.Router()
 
-const serializeList = list => ({
-  id: list.id,
-  name: xss(list.name)
-})
+listsRouter
+  .route('/')
+  .get((req, res, next) => {
+    ListsService.getAllLists(req.app.get('db'))
+      .then(lists => {
+        res.json(ListsService.serializeLists(lists))
+      })
+      .catch(next)
+  })
 
+listsRouter
+  .route('/:list_id')
+  .all(checkListExists)
+  .get((req, res) => {
+    res.json(ListsService.serializeList(res.list))
+  })
 
-GroceryListRouter
-.route('/')
+listsRouter.route('/:list_id/reviews/')
+  .all(checkListExists)
+  .get((req, res, next) => {
+    ListsService.getReviewsForList(
+      req.app.get('db'),
+      req.params.list_id
+    )
+      .then(reviews => {
+        res.json(ListsService.serializeListReviews(reviews))
+      })
+      .catch(next)
+  })
 
-.get((req, res, next) => {
-    ListService.getAllLists(req.app.get('db'))
-    .then(list => {
-        res.json(list.map(serializeList))
-    })
-    .catch(next)
-})
+/* async/await syntax for promises */
+async function checkListExists(req, res, next) {
+  try {
+    const list = await ListsService.getById(
+      req.app.get('db'),
+      req.params.list_id
+    )
 
-.post(bodyParser, (req, res, next) => {
-  const { id, name } = req.body;
-  const newList = { id, name }
+    if (!list)
+      return res.status(404).json({
+        error: `Grocery list doesn't exist`
+      })
 
-
-for (const field of ['name']) {
-  if (!newList[field]) {
-    logger.error(`${field} is required`)
-    return res.status(400).send({
-      error: { message: `'${field}' is required` }
-    })
+    res.list = list
+    next()
+  } catch (error) {
+    next(error)
   }
 }
 
-
-ListService.insertList(
-  req.app.get('db'),
-  newList
-)
-  .then(list => {
-    logger.info(`Grocery list with id ${list.id} created.`)
-    res
-      .status(201)
-      .location(path.posix.join(req.originalUrl, `${list.id}`))
-      .json(serializeList(list))
-  })
-  .catch(next)
-
-})
-
-GroceryListRouter
-  .route('/:list_id')
-
-  .all((req, res, next) => {
-    const { list_id } = req.params
-    ListService.getById(req.app.get('db'), list_id)
-      .then(list => {
-        if (!list) {
-          logger.error(`Grocery list with id ${list} not found.`)
-          return res.status(404).json({
-            error: { message: `List Not Found` }
-          })
-        }
-
-        res.list = list
-        next()
-      })
-      .catch(next)
-
-  })
-
-  .get((req, res) => {
-    res.json(serializeList(res.list))
-  })
-
-  .delete((req, res, next) => {
-    const { list_id } = req.params
-    ListService.deleteList(
-      req.app.get('db'),
-      list_id
-    )
-      .then(numRowsAffected => {
-        logger.info(`List with id ${list_id} deleted.`)
-        res.status(204).end()
-      })
-      .catch(next)
-  })
-
-  .patch(bodyParser, (req, res, next) => {
-    const { name } = req.body
-    const folderToUpdate = { name }
-
-    const numberOfValues = Object.values(folderToUpdate).filter(Boolean).length
-    if (numberOfValues === 0) {
-      logger.error(`Invalid update without required fields`)
-      return res.status(400).json({
-        error: {
-          message: `Request body must content either 'name'.`
-        }
-      })
-    }
-
-    ListService.updateList(
-      req.app.get('db'),
-      req.params.List_id,
-      listToUpdate
-    )
-      .then(numRowsAffected => {
-        res.status(204).end()
-      })
-      .catch(next)
-  })
-
-
-module.exports = GroceryListRouter
+module.exports = listsRouter

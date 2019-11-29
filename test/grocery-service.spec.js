@@ -142,7 +142,9 @@ describe('List Endpoints', function() {
     requiredFields.forEach(field => {
       const newList = {
         name: 'Test new list',
-        items: 'Test new list items...'
+        items: [
+          'Cookies', 'Almond Milk', 'Wrapping Paper', 'Chocolate chips'
+      ]
       }
 
       it(`responds with 400 and an error message when the '${field}' is missing`, () => {
@@ -227,7 +229,9 @@ describe('List Endpoints', function() {
         const idToUpdate = 2
         const updateList = {
           name: 'updated list name',
-          items: 'updated list items',
+          items: [
+            'Cookies', 'Almond Milk', 'Cheesecake', 'Chocolate chips'
+        ],
         }
         const expectedList = {
           ...testLists[idToUpdate - 1],
