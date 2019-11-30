@@ -20,22 +20,22 @@ const ListsService = {
   },
 
   
-  serializeLists(Lists) {
-    return Lists.map(this.serializeList)
+  serializeLists(lists) {
+    return lists.map(this.serializeList)
   },
 
-  serializeList(List) {
-    const ListTree = new Treeize()
+  serializeList(list) {
+    const listTree = new Treeize()
 
     // Some light hackiness to allow for the fact that `treeize`
     // only accepts arrays of objects, and we want to use a single
     // object.
-    const ListData = ListTree.grow([ List ]).getData()[0]
+    const listData = listTree.grow([ list ]).getData()[0]
 
     return {
-      id: ListData.id,
-      name: xss(ListData.title),
-      items: xss(ListData.content),
+      id: listData.id,
+      name: xss(listData.name),
+      items: xss(listData.items),
     }
   },
 }

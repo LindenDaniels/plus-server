@@ -1,6 +1,6 @@
 const knex = require('knex')
 const app = require('../src/App/app')
-const { makeListsArray, makeMaliciousList } = require('./list.fixtures')
+const { makeListsArray, makeMaliciousList } = require('./lists.fixtures')
 
 describe('List Endpoints', function() {
   let db
@@ -8,7 +8,7 @@ describe('List Endpoints', function() {
   before('make knex instance', () => {
     db = knex({
       client: 'pg',
-      connection: process.env.TEST_DB_URL,
+      connection: process.env.TEST_DATABASE_URL,
     })
     app.set('db', db)
   })
@@ -19,11 +19,11 @@ describe('List Endpoints', function() {
 
   afterEach('cleanup',() => db('grocery_lists').truncate())
 
-  describe(`GET /api/grocery-lists`, () => {
+  describe(`GET /api/lists`, () => {
     context(`Given no lists`, () => {
       it(`responds with 200 and an empty list`, () => {
         return supertest(app)
-          .get('/api/grocery-lists')
+          .get('/api/lists')
           .expect(200, [])
       })
     })
@@ -86,7 +86,7 @@ describe('List Endpoints', function() {
 
       it('responds with 200 and the specified list', () => {
         const listId = 2
-        const expectedList = testLists[ListId - 1]
+        const expectedList = testLists[listId - 1]
         return supertest(app)
           .get(`/api/lists/${listId}`)
           .expect(200, expectedList)

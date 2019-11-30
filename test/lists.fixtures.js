@@ -34,13 +34,15 @@ function makeListsArray() {
   function makeMaliciousList() {
     const maliciousList = {
       id: 911,
-      name: 'Naughty naughty very naughty <script>alert("xss");</script>',
-      items: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`
+      name: `Bad image <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`,
+      items: ['Naughty naughty very naughty <script>alert("xss");</script>']
+      
     }
     const expectedList = {
       ...maliciousList,
-      name: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;',
-      items: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`
+      name: `Bad image <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`,
+      items: ['Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;'],
+      
     }
     return {
       maliciousList,

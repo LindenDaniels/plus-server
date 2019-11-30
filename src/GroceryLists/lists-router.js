@@ -20,18 +20,6 @@ listsRouter
     res.json(ListsService.serializeList(res.list))
   })
 
-listsRouter.route('/:list_id/reviews/')
-  .all(checkListExists)
-  .get((req, res, next) => {
-    ListsService.getReviewsForList(
-      req.app.get('db'),
-      req.params.list_id
-    )
-      .then(reviews => {
-        res.json(ListsService.serializeListReviews(reviews))
-      })
-      .catch(next)
-  })
 
 /* async/await syntax for promises */
 async function checkListExists(req, res, next) {

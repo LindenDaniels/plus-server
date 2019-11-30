@@ -6,7 +6,7 @@ const helmet = require('helmet')
 const { NODE_ENV } = require('../config')
 const errorHandler = require('../ErrorHandlers/ErrorHandler')
 //const RecipesRouter = require('./Recipes/recipe-router')
-const GroceryListRouter = require('../GroceryLists/grocery-router')
+const GroceryListRouter = require('../GroceryLists/lists-router')
 
 const app = express()
 
@@ -18,7 +18,7 @@ app.use(cors())
 app.use(helmet())
 
 //app.use('/api/recipes', RecipesRouter)
-app.use('/api/grocery-lists', GroceryListRouter)
+app.use('/api/lists', GroceryListRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, world!')
