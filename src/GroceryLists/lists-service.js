@@ -19,6 +19,16 @@ const ListsService = {
       .first()
   },
 
+  insertList(knex, newList) {
+    return knex
+      .insert(newList)
+      .into('grocery_lists')
+      .returning('*')
+      .then(rows => {
+        return rows[0];
+      });
+  },
+
   
   serializeLists(lists) {
     return lists.map(this.serializeList)
