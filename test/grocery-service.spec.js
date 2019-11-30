@@ -118,7 +118,12 @@ describe('List Endpoints', function() {
     it(`creates a list, responding with 201 and the new list`, () => {
       const newList = {
         name: 'Test new list',
-        items: 'Test new list items...'
+        items: [
+          'Chocolate',
+          'Milk ',
+          'Marshmellows',
+          'Graham crackers'
+      ],
       }
       return supertest(app)
         .post('/api/lists')

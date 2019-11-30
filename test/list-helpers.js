@@ -4,41 +4,28 @@
       {
         id: 1,
         name: 'First test list!',
-        items: [
-            'Cookies',
-            'Milk ',
-            'Christmas Tree '
-        ],
+        items: 
+            'Cookies, Milk, Christmas Tree',
         name_id: name[0].id,
       },
       {
         id: 2,
         name: 'Second test list!',
-        items: [
-            'Makeup',
-            'Paper towels',
-            'Cheese'
-        ],
+        items: 
+            'Makeup, Paper towels, Cheese',
         name_id: name[1].id,
       },
       {
         id: 3,
         name: 'Third test list!',
-         items: [
-            'Almond Milk',
-            'Almonds',
-            'Cashews'
-        ],
+         items: 'Almond Milk, Almonds, Cashews',
         name_id: name[2].id,
       },
       {
         id: 4,
         name: 'Fourth test list!',
-         items: [
-            'Macaroni shells',
-            'Dog food',
-            'Hedgehog food'
-        ],
+         items: 
+            'Macaroni shells, Dog food, Hedgehog food',
         name_id: name[3].id,
       },
     ]
