@@ -115,3 +115,29 @@
 {"message":"Grocery list with id 911 created.","level":"info"}
 {"message":"Grocery list with id 2 deleted.","level":"info"}
 {"message":"Invalid update without required fields","level":"error"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"Missing name in request body","level":"error"}
+{"message":"Missing items in request body","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Grocery list with id 2 deleted.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"Missing name in request body","level":"error"}
+{"message":"Missing items in request body","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Grocery list with id 2 deleted.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"Missing name in request body","level":"error"}
+{"message":"Missing items in request body","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Grocery list with id 2 deleted.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"name, ingredients, instructions is required","level":"error"}
+{"message":"name, ingredients, instructions is required","level":"error"}
+{"message":"name, ingredients, instructions is required","level":"error"}
+{"message":"name, ingredients, instructions is required","level":"error"}
+{"message":"name, ingredients, instructions is required","level":"error"}
+{"message":"name, ingredients, instructions is required","level":"error"}
+{"message":"name, ingredients, instructions is required","level":"error"}
+{"message":"Recipe with id 18 created.","level":"info"}
