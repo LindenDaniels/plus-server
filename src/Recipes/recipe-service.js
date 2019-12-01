@@ -2,11 +2,12 @@ const xss = require('xss')
 const Treeize = require('treeize')
 
 const RecipeService = {
-  getAllRecipe(db) {
+  getAllRecipes(db) {
     return db
       .from('recipes')
       .select(
         'recipes.id',
+        'recipes.folderid',
         'recipes.name',
         'recipes.ingredients',
         'recipes.instructions'
@@ -30,8 +31,20 @@ const RecipeService = {
       });
   },
 
+  deleteRecipe(knex, id) {
+    return knex('recipes')
+      .where({ id })
+      .delete();
+  },
+
+  updateRecipe(knex, id, newRecipeFields) {
+    return knex('recipes')
+      .where({ id })
+      .update(newRecipeFields);
+  },
+
   
-  serializeRecipe(recipes) {
+  serializeRecipes(recipes) {
     return recipes.map(this.serializeRecipe)
   },
 
@@ -45,6 +58,7 @@ const RecipeService = {
 
     return {
       id: recipeData.id,
+      folderid: recipeData.folderid,
       name: xss(recipeData.name),
       ingredients: xss(recipeData.ingredients),
       instructions: xss(recipeData.instructions)

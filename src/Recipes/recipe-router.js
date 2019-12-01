@@ -10,6 +10,7 @@ const bodyParser = express.json()
 
 const serializeRecipe = recipe => ({
   id: recipe.id,
+  folderid: recipe.folderid,
   name: xss(recipe.name),
   ingredients: xss(recipe.ingredients),
   instructions: xss(recipe.instructions)
@@ -28,15 +29,16 @@ RecipeRouter
 })
 
 .post(bodyParser, (req, res, next) => {
-  const { id, name, ingredients, instructions } = req.body;
-  const newRecipe = { id, name, ingredients, instructions }
+  const { folderid, name, ingredients, instructions } = req.body;
+  const newRecipe = { folderid, name, ingredients, instructions }
+  console.log(newRecipe);
 
 
-for (const field of ['name, ingredients, instructions']) {
+for (const field of ['name', 'folderid', 'ingredients', 'instructions']) {
   if (!newRecipe[field]) {
     logger.error(`${field} is required`)
     return res.status(400).send({
-      error: { message: `'${field}' is required` }
+      error: { message: `Field '${field}' is required` }
     })
   }
 }
@@ -96,22 +98,22 @@ RecipeRouter
   })
 
   .patch(bodyParser, (req, res, next) => {
-    const { name, ingredients, instructions } = req.body
-    const recipeToUpdate = { name, instructions, ingredients }
+    const { name, folderid, ingredients, instructions } = req.body
+    const recipeToUpdate = { name, folderid, instructions, ingredients }
 
     const numberOfValues = Object.values(recipeToUpdate).filter(Boolean).length
     if (numberOfValues === 0) {
       logger.error(`Invalid update without required fields`)
       return res.status(400).json({
         error: {
-          message: `Request body must content either 'name'.`
+          message: `Request body must contain fields name, ingredients, and instructions.`
         }
       })
     }
 
     RecipeService.updateRecipe(
       req.app.get('db'),
-      req.params.Recipe_id,
+      req.params.recipe_id,
       recipeToUpdate
     )
       .then(numRowsAffected => {
