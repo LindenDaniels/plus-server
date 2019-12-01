@@ -31,16 +31,16 @@ const RecipeService = {
       });
   },
 
-  deleteList(knex, id) {
-    return knex('grocery_lists')
+  deleteRecipe(knex, id) {
+    return knex('recipes')
       .where({ id })
       .delete();
   },
 
-  updateList(knex, id, newListFields) {
-    return knex('grocery_lists')
+  updateRecipe(knex, id, newRecipeFields) {
+    return knex('recipes')
       .where({ id })
-      .update(newListFields);
+      .update(newRecipeFields);
   },
 
   
