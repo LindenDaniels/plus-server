@@ -287,3 +287,35 @@
 {"message":"Recipe with id undefined not found.","level":"error"}
 {"message":"Recipe with id undefined not found.","level":"error"}
 {"message":"Invalid update without required fields","level":"error"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"Missing name in request body","level":"error"}
+{"message":"Missing items in request body","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Grocery list with id 2 deleted.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"Recipe with id undefined not found.","level":"error"}
+{"message":"folderid is required","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"folderid is required","level":"error"}
+{"message":"ingredients is required","level":"error"}
+{"message":"instructions is required","level":"error"}
+{"message":"Recipe with id 1 created.","level":"info"}
+{"message":"Recipe with id undefined not found.","level":"error"}
+{"message":"Recipe with id undefined not found.","level":"error"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"Missing name in request body","level":"error"}
+{"message":"Missing items in request body","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Grocery list with id 2 deleted.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"Recipe with id undefined not found.","level":"error"}
+{"message":"instructions is required","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"folderid is required","level":"error"}
+{"message":"ingredients is required","level":"error"}
+{"message":"instructions is required","level":"error"}
+{"message":"Recipe with id 1 created.","level":"info"}
+{"message":"Recipe with id undefined not found.","level":"error"}
+{"message":"Recipe with id undefined not found.","level":"error"}
+{"message":"Invalid update without required fields","level":"error"}

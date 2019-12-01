@@ -110,6 +110,7 @@ describe('Recipe Endpoints', function() {
           .expect(200)
           .expect(res => {
             expect(res.body.name).to.eql(expectedRecipe.name)
+            expect(res.body.folderid).to.eql(expectedRecipe.folderid)
             expect(res.body.ingredients).to.eql(expectedRecipe.ingredients)
             expect(res.body.instructions).to.eql(expectedRecipe.instructions)
           })
@@ -121,6 +122,7 @@ describe('Recipe Endpoints', function() {
     it(`creates a recipe, responding with 201 and the new recipe`, () => {
       const newRecipe = {
         name: 'Test new recipe',
+        folderid: 2,
         ingredients: 'Chocolate, Milk, Marshmellows, Graham crackers',
         intructions: 'Lorem'
       }
@@ -133,6 +135,7 @@ describe('Recipe Endpoints', function() {
           expect(res.body.ingredients).to.eql(newRecipe.ingredients)
           expect(res.body.instructions).to.eql(expectedRecipe.instructions)
           expect(res.body).to.have.property('id')
+          expect(res.body).to.have.property('folderid')
           expect(res.headers.location).to.eql(`/api/recipes/${res.body.id}`)
         })
         .then(res =>
