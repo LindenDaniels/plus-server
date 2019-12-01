@@ -18,16 +18,17 @@ listsRouter
   .post(bodyParser, (req, res, next) => {
     const { id, name, items } = req.body;
     const newList = { id, name, items }
+    console.log(newList)
   
   
-  /*for (const field of ['name']) {
+  for (const field of ['name']) {
     if (!newList[field]) {
       logger.error(`${field} is required`)
       return res.status(400).send({
         error: { message: `'${field}' is required` }
       })
     }
-  }*/
+  }
   
   
   

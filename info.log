@@ -45,3 +45,6 @@
 {"message":"Grocery list with id 1 created.","level":"info"}
 {"message":"Grocery list with id 911 created.","level":"info"}
 {"message":"Invalid update without required fields","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"name is required","level":"error"}
