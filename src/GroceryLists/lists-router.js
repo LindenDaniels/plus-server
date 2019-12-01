@@ -19,11 +19,11 @@ listsRouter
     const newList = { id, name, items }
     console.log(req.body);
   
-  for (const field of ['name']) {
+  for (const field of ['name', 'items']) {
     if (!newList[field]) {
-      logger.error(`${field} is required`)
+      logger.error(`Missing ${field} in request body`)
       return res.status(400).send({
-        error: { message: `'${field}' is required` }
+        error: { message: `Missing '${field}' in request body` }
       })
     }
   }
@@ -72,12 +72,12 @@ listsRouter
 
   .delete((req, res, next) => {
     const { list_id } = req.params
-    ListService.deleteList(
+    ListsService.deleteList(
       req.app.get('db'),
       list_id
     )
       .then(numRowsAffected => {
-        logger.info(`List with id ${list_id} deleted.`)
+        logger.info(`Grocery list with id ${list_id} deleted.`)
         res.status(204).end()
       })
       .catch(next)
@@ -92,14 +92,14 @@ listsRouter
       logger.error(`Invalid update without required fields`)
       return res.status(400).json({
         error: {
-          message: `Request body must contain name'.`
+          message: `Request body must contain name and items.`
         }
       })
     }
 
-    ListService.updateList(
+    ListsService.updateList(
       req.app.get('db'),
-      req.params.List_id,
+      req.params.list_id,
       listToUpdate
     )
       .then(numRowsAffected => {

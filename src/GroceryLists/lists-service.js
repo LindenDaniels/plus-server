@@ -9,8 +9,7 @@ const ListsService = {
         'gls.id',
         'gls.name',
         'gls.items',
-      )
-        
+      )   
   },
 
   getById(db, id) {
@@ -29,7 +28,18 @@ const ListsService = {
       });
   },
 
-  
+  deleteList(knex, id) {
+    return knex('grocery_lists')
+      .where({ id })
+      .delete();
+  },
+
+  updateList(knex, id, newListFields) {
+    return knex('grocery_lists')
+      .where({ id })
+      .update(newListFields);
+  },
+
   serializeLists(lists) {
     return lists.map(this.serializeList)
   },

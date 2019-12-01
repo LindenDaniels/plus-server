@@ -71,7 +71,7 @@ describe('List Endpoints', function() {
         const listId = 123456
         return supertest(app)
           .get(`/api/lists/${listId}`)
-          .expect(404, { error: { message: `Grocery list doesn't exist` } })
+          .expect(404, { error: `Grocery list doesn't exist` })
       })
     })
 
@@ -118,12 +118,7 @@ describe('List Endpoints', function() {
     it(`creates a list, responding with 201 and the new list`, () => {
       const newList = {
         name: 'Test new list',
-        items: [
-          'Chocolate',
-          'Milk ',
-          'Marshmellows',
-          'Graham crackers'
-      ],
+        items: 'Chocolate, Milk, Marshmellows, Graham crackers'
       }
       return supertest(app)
         .post('/api/lists')
@@ -147,9 +142,8 @@ describe('List Endpoints', function() {
     requiredFields.forEach(field => {
       const newList = {
         name: 'Test new list',
-        items: [
-          'Cookies', 'Almond Milk', 'Wrapping Paper', 'Chocolate chips'
-      ]
+        items: 
+          'Cookies, Almond Milk, Wrapping Paper, Chocolate chips'
       }
 
       it(`responds with 400 and an error message when the '${field}' is missing`, () => {
@@ -183,7 +177,7 @@ describe('List Endpoints', function() {
         const listId = 123456
         return supertest(app)
           .delete(`/api/lists/${listId}`)
-          .expect(404, { error: { message: `list doesn't exist` } })
+          .expect(404, { error: `Grocery list doesn't exist` })
       })
     })
 
@@ -217,7 +211,7 @@ describe('List Endpoints', function() {
         const listId = 123456
         return supertest(app)
           .delete(`/api/lists/${listId}`)
-          .expect(404, { error: { message: `list doesn't exist` } })
+          .expect(404, { error: `Grocery list doesn't exist` } )
       })
     })
 
@@ -234,9 +228,8 @@ describe('List Endpoints', function() {
         const idToUpdate = 2
         const updateList = {
           name: 'updated list name',
-          items: [
-            'Cookies', 'Almond Milk', 'Cheesecake', 'Chocolate chips'
-        ],
+          items: 
+            'Cookies, Almond Milk, Cheesecake, Chocolate chips',
         }
         const expectedList = {
           ...testLists[idToUpdate - 1],
@@ -260,7 +253,7 @@ describe('List Endpoints', function() {
           .send({ irrelevantField: 'foo' })
           .expect(400, {
             error: {
-              message: `Request body must contain either 'name' or 'items'`
+              message: `Request body must contain name and items.`
             }
           })
       })
