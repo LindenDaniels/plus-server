@@ -148,6 +148,10 @@
     return db
       .into('name')
       .insert([name])
+      .into('folderid')
+      .insert(folderid)
+      .into('instructions')
+      .insert(instructions)
       .then(() =>
         db
           .into('recipes')

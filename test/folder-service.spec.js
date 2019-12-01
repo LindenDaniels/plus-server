@@ -1,6 +1,7 @@
 const knex = require('knex')
 const app = require('../src/App/app')
 const { makeFoldersArray, makeMaliciousFolder } = require('./folders.fixtures')
+const folderHelpers = require('./folder-helpers')
 
 describe('Folder Endpoints', function() {
   let db
@@ -15,9 +16,9 @@ describe('Folder Endpoints', function() {
 
   after('disconnect from db', () => db.destroy())
 
-  before('clean the table', () => db('folders').truncate())
+  before('cleanup', () => folderHelpers.cleanTables(db))
 
-  afterEach('cleanup',() => db('folders').truncate())
+  afterEach('cleanup', () => folderHelpers.cleanTables(db))
 
   describe(`GET /api/folders`, () => {
     context(`Given no folders`, () => {

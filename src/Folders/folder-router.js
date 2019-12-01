@@ -2,8 +2,8 @@ const path = require('path')
 const express = require('express')
 const xss = require('xss')
 const logger = require('../logger')
-const FoldersService = require('./folders-service')
-const { isWebUri } = require('valid-url')
+const FoldersService = require('./folder-service')
+//const { isWebUri } = require('valid-url')
 
 const FolderRouter = express.Router()
 const bodyParser = express.json()
@@ -102,7 +102,7 @@ FolderRouter
       logger.error(`Invalid update without required fields`)
       return res.status(400).json({
         error: {
-          message: `Request body must content either 'name'.`
+          message: `Request body must contain name.`
         }
       })
     }
