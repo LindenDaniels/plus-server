@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const ListsService = require('./lists-service')
 const logger = require('../logger')
 const bodyParser = express.json()
@@ -13,13 +14,10 @@ listsRouter
       })
       .catch(next)
     })
-
-
   .post(bodyParser, (req, res, next) => {
     const { id, name, items } = req.body;
     const newList = { id, name, items }
-    console.log(newList)
-  
+    console.log(req.body);
   
   for (const field of ['name']) {
     if (!newList[field]) {
@@ -30,8 +28,6 @@ listsRouter
     }
   }
   
-  
-  
   ListsService.insertList(
     req.app.get('db'),
     newList
@@ -41,11 +37,12 @@ listsRouter
       res
         .status(201)
         .location(path.posix.join(req.originalUrl, `${list.id}`))
-        .json(serializeList(list))
+        .json(ListsService.serializeList(list))
     })
     .catch(next)
   
   })
+
 
   async function checkListExists(req, res, next) {
     try {

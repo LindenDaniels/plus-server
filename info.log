@@ -48,3 +48,28 @@
 {"message":"name is required","level":"error"}
 {"message":"name is required","level":"error"}
 {"message":"name is required","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"name is required","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"name is required","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
+{"message":"name is required","level":"error"}
+{"message":"Grocery list with id 5 created.","level":"info"}
+{"message":"Grocery list with id 6 created.","level":"info"}
+{"message":"Grocery list with id 7 created.","level":"info"}
+{"message":"Grocery list with id 8 created.","level":"info"}
+{"message":"Grocery list with id 9 created.","level":"info"}
+{"message":"Grocery list with id 10 created.","level":"info"}
+{"message":"Grocery list with id 11 created.","level":"info"}
+{"message":"Grocery list with id 12 created.","level":"info"}
+{"message":"Grocery list with id 1 created.","level":"info"}
+{"message":"name is required","level":"error"}
+{"message":"Grocery list with id 911 created.","level":"info"}
+{"message":"Invalid update without required fields","level":"error"}
