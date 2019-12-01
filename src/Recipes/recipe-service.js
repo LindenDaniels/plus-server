@@ -31,6 +31,18 @@ const RecipeService = {
       });
   },
 
+  deleteList(knex, id) {
+    return knex('grocery_lists')
+      .where({ id })
+      .delete();
+  },
+
+  updateList(knex, id, newListFields) {
+    return knex('grocery_lists')
+      .where({ id })
+      .update(newListFields);
+  },
+
   
   serializeRecipes(recipes) {
     return recipes.map(this.serializeRecipe)
@@ -46,7 +58,7 @@ const RecipeService = {
 
     return {
       id: recipeData.id,
-      folderId: recipeData.folderId,
+      folderid: recipeData.folderid,
       name: xss(recipeData.name),
       ingredients: xss(recipeData.ingredients),
       instructions: xss(recipeData.instructions)

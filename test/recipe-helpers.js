@@ -4,56 +4,53 @@
       {
         id: 1,
         name: 'First test recipe!',
-        ingredients: [
-            'Flour',
-            'Sugar',
-            'Milk'
-        ],
+        ingredients: 
+            'Flour, Sugar, Milk',
         name_id: name[0].id,
-        Instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        folderid: folder[1].id,
+        instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
       {
         id: 2,
         name: 'Second test recipe!',
-        ingredients: [
-            'Cheese',
-            'Bread',
-            'Butter'
-        ],
+        ingredients: 
+            'Cheese, Bread, Butter',
         name_id: name[1].id,
-        Instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        folderid: folder[3].id,
+        instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
       {
         id: 3,
         name: 'Third test recipe!',
-         ingredients: [
-            'Almond Milk',
-            'Almonds',
-            'Cashews'
-        ],
+         ingredients: 
+            'Almond Milk, Almonds, Cashews',
         name_id: name[2].id,
-        Instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        folderid: folder[4].id,
+        instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
       {
         id: 4,
         name: 'Fourth test recipe!',
-         ingredients: [
-            'Kale',
-            'Protein powder',
-            'Spinach',
-            'Orange'
-        ],
-        name_id: name[3].id,
-        Instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+         ingredients: 
+            'Kale, Protein powder, Spinach, Orange',
+            folderid: folder[5].id,
+            name_id: name[3].id,
+        instructions: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
     ]
   }
   
 
   
-  function makeExpectedRecipe(name, ingredients=[], instructions) {
+  function makeExpectedRecipe(name, folderid, ingredients, instructions) {
     const name = name
       .find(name => name.id === recipe.name_id)
+    
+    const folderid = folderid
+      .find(folder => folder.id === recipe.folder_id)
+    
+    const recipeInstructions = instructions
+    .find(instructions => instructions.id === recipe.instructions_id)
   
     const recipeIngredients = ingredients
       .filter(ingredient => ingredient.recipe_id === recipe.id)
@@ -63,6 +60,7 @@
   
     return {
       id: recipe.id,
+      folderid: recipe.folderid,
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
       name: recipe.name,
@@ -92,18 +90,16 @@
   function makeMaliciousRecipe(name) {
     const maliciousRecipe = {
       id: 911,
-       ingredients: [
-            'Spaghetti sauice',
-            'Cheese',
-            'Noodles'
-        ],
+      ingredients: 
+            'Spaghetti sauce, Cheese, Noodles',
       name: 'Naughty naughty very naughty <script>alert("xss");</script>',
-      name_id: name.id,
+      folderid: recipe.folderid,
       ingredients: `Bad ingredients <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`,
     }
     const expectedRecipe = {
       ...makeExpectedRecipe([name], maliciousRecipe),
       name: 'Naughty naughty very naughty &lt;script&gt;alert(\"xss\");&lt;/script&gt;',
+      folderid: recipe.folderid,
       ingredients: `Bad ingredients <img src="https://url.to.file.which/does-not.exist">. But not <strong>all</strong> bad.`,
     }
     return {
@@ -130,23 +126,27 @@
     )
   }
   
-  function seedRecipesTables(db, name, recipes, ingredients=[]) {
+  function seedRecipesTables(db, name, folderid, instructions, ingredients) {
     return db
-      .into('recipe_name')
+      .into('name')
       .insert(name)
+      .into('folderid')
+      .insert(folderid)
+      .into('instructions')
+      .insert(instructions)
       .then(() =>
         db
           .into('recipes')
           .insert(recipes)
       )
       .then(() =>
-        ingredients.length && db.into('recipe_ingredients').insert(ingredients)
+        ingredients.length && db.into('ingredients').insert(ingredients)
       )
   }
   
   function seedMaliciousRecipe(db, name, recipe) {
     return db
-      .into('recipe_name')
+      .into('name')
       .insert([name])
       .then(() =>
         db

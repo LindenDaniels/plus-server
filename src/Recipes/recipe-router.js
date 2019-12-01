@@ -31,16 +31,17 @@ RecipeRouter
 .post(bodyParser, (req, res, next) => {
   const { folderid, name, ingredients, instructions } = req.body;
   const newRecipe = { folderid, name, ingredients, instructions }
+  console.log(newRecipe);
 
 
-/*for (const field of ['name, ingredients, instructions']) {
+for (const field of ['name', 'folderid', 'ingredients', 'instructions']) {
   if (!newRecipe[field]) {
     logger.error(`${field} is required`)
     return res.status(400).send({
-      error: { message: `'${field}' is required` }
+      error: { message: `Field '${field}' is required` }
     })
   }
-}*/
+}
 
 
 RecipeService.insertRecipe(
@@ -97,8 +98,8 @@ RecipeRouter
   })
 
   .patch(bodyParser, (req, res, next) => {
-    const { name, ingredients, instructions } = req.body
-    const recipeToUpdate = { name, instructions, ingredients }
+    const { name, folderid, ingredients, instructions } = req.body
+    const recipeToUpdate = { name, folderid, instructions, ingredients }
 
     const numberOfValues = Object.values(recipeToUpdate).filter(Boolean).length
     if (numberOfValues === 0) {
@@ -112,7 +113,7 @@ RecipeRouter
 
     RecipeService.updateRecipe(
       req.app.get('db'),
-      req.params.Recipe_id,
+      req.params.recipe_id,
       recipeToUpdate
     )
       .then(numRowsAffected => {

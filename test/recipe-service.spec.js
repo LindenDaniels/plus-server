@@ -59,6 +59,7 @@ describe('Recipe Endpoints', function() {
           .expect(200)
           .expect(res => {
             expect(res.body[0].name).to.eql(expectedRecipe.name)
+            expect(res.body[0].folderid).to.eql(expectedRecipe.folderid)
             expect(res.body[0].ingredients).to.eql(expectedRecipe.ingredients)
             expect(res.body[0].instructions).to.eql(expectedRecipe.instructions)
           })
@@ -72,7 +73,7 @@ describe('Recipe Endpoints', function() {
         const recipeId = 123456
         return supertest(app)
           .get(`/api/recipes/${recipeId}`)
-          .expect(404, { error: `Recipe doesn't exist` })
+          .expect(404, { error: { message: 'Recipe Not Found' } })
       })
     })
 
@@ -141,13 +142,15 @@ describe('Recipe Endpoints', function() {
         )
     })
 
-    const requiredFields = ['name', 'ingredients', 'instructions']
+    const requiredFields = ['name', 'folderid', 'ingredients', 'instructions']
 
     requiredFields.forEach(field => {
       const newRecipe = {
         name: 'Test new recipe',
+        folderid: '2',
         ingredients: 
-          'Cookies, Almond Milk, Wrapping Paper, Chocolate chips'
+          'Cookies, Almond Milk, Chocolate chips',
+        instructions: 'Lorem Christmas New Years'
       }
 
       it(`responds with 400 and an error message when the '${field}' is missing`, () => {
@@ -157,7 +160,7 @@ describe('Recipe Endpoints', function() {
           .post('/api/recipes')
           .send(newRecipe)
           .expect(400, {
-            error: { message: `Missing '${field}' in request body` }
+            error: { message: `Field '${field}' is required` }
           })
       })
     })
@@ -170,6 +173,7 @@ describe('Recipe Endpoints', function() {
         .expect(201)
         .expect(res => {
           expect(res.body.name).to.eql(expectedRecipe.name)
+          expect(res.body.folderid).to.eql(expectedRecipe.folderid)
           expect(res.body.ingredients).to.eql(expectedRecipe.ingredients)
           expect(res.body.instructions).to.eql(expectedRecipe.instructions)
         })
@@ -182,7 +186,7 @@ describe('Recipe Endpoints', function() {
         const recipeId = 123456
         return supertest(app)
           .delete(`/api/recipes/${recipeId}`)
-          .expect(404, { error: `Recipe doesn't exist` })
+          .expect(404, { error: { message: 'Recipe Not Found' } })
       })
     })
 
@@ -216,7 +220,8 @@ describe('Recipe Endpoints', function() {
         const recipeId = 123456
         return supertest(app)
           .delete(`/api/recipes/${recipeId}`)
-          .expect(404, { error: `Recipe doesn't exist` } )
+          .expect(404,  { error: { message: 'Recipe Not Found' } }
+                )
       })
     })
 
@@ -259,7 +264,7 @@ describe('Recipe Endpoints', function() {
           .send({ irrelevantField: 'foo' })
           .expect(400, {
             error: {
-              message: `Request body must contain name, ingredients and instructionss.`
+              message: `Request body must contain fields name, ingredients, and instructions.`
             }
           })
       })
