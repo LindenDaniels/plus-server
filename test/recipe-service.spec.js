@@ -124,7 +124,7 @@ describe('Recipe Endpoints', function() {
         name: 'Test new recipe',
         folderid: 2,
         ingredients: 'Chocolate, Milk, Marshmellows, Graham crackers',
-        intructions: 'Lorem'
+        instructions: 'Lorem'
       }
       return supertest(app)
         .post('/api/recipes')
@@ -133,7 +133,7 @@ describe('Recipe Endpoints', function() {
         .expect(res => {
           expect(res.body.name).to.eql(newRecipe.name)
           expect(res.body.ingredients).to.eql(newRecipe.ingredients)
-          expect(res.body.instructions).to.eql(expectedRecipe.instructions)
+          expect(res.body.instructions).to.eql(newRecipe.instructions)
           expect(res.body).to.have.property('id')
           expect(res.body).to.have.property('folderid')
           expect(res.headers.location).to.eql(`/api/recipes/${res.body.id}`)
