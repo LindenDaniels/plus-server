@@ -7,6 +7,7 @@ const { NODE_ENV } = require('../config')
 const errorHandler = require('../ErrorHandlers/ErrorHandler')
 const RecipesRouter = require('../Recipes/recipe-router')
 const GroceryListRouter = require('../GroceryLists/lists-router')
+const FoldersRouter = require('../Folders/folder-router')
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.use(helmet())
 
 app.use('/api/recipes', RecipesRouter)
 app.use('/api/lists', GroceryListRouter)
+app.use('/api/folders', FoldersRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello, world!')
