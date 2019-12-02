@@ -74,6 +74,7 @@ describe('Folder Endpoints', function() {
           .expect(404, { error: { message: 'Folder Not Found' }
       })
     })
+})
 
     context('Given there are folders in the database', () => {
       const testFolders = makeFoldersArray()
