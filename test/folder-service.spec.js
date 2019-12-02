@@ -71,7 +71,7 @@ describe('Folder Endpoints', function() {
         const folderId = 123456
         return supertest(app)
           .get(`/api/folders/${folderId}`)
-          .expect(404, { error: `Folder doesn't exist` })
+          .expect(404, { error: { message: 'Folder Not Found' }
       })
     })
 
