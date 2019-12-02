@@ -70,11 +70,7 @@
   function makeMaliciousList(name) {
     const maliciousList = {
       id: 911,
-       items: [
-            'Cookies ',
-            'Milk ',
-            'Christmas Tree '
-        ],
+      items: 'Cookies, Milk, Christmas Tree',
       name: 'Naughty naughty very naughty <script>alert("xss");</script>',
       name_id: name.id,
       items: `Bad items <img src="https://url.to.file.which/does-not.exist" onerror="alert(document.cookie);">. But not <strong>all</strong> bad.`,
