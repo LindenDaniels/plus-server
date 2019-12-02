@@ -149,7 +149,7 @@ describe('Folder Endpoints', function() {
           .post('/api/folders')
           .send(newFolder)
           .expect(400, {
-            error: { message: `Missing '${field}' in request body` }
+            error: { message: `Missing ${field}.` }
           })
       })
     })

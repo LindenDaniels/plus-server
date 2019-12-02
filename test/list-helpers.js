@@ -34,7 +34,7 @@
 
   
   function makeExpectedList(name, list, items=[]) {
-    const name = name
+    const listName = name
       .find(name => name.id === list.name_id)
   
     const listItems = items
@@ -47,11 +47,7 @@
       id: list.id,
       items: list.items,
       name: list.name,
-      
       number_of_items,
-      name: {
-        id: name.id,
-      },
     }
   }
   
