@@ -4,19 +4,22 @@
       {
         id: 1,
         name: 'First test folder!',
-        folderid: folder[0].id,
+        folderid: folder[1].id,
       },
       {
         id: 2,
         name: 'Second test folder!',
+        folderid: folder[2].id,
       },
       {
         id: 3,
         name: 'Third test folder!',
+        folderid: folder[3].id,
       },
       {
         id: 4,
         name: 'Fourth test folder!',
+        folderid: folder[4].id,
       },
     ]
   }
