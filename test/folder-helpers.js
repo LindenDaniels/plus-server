@@ -23,29 +23,7 @@
       },
     ]
   }
-  
 
-  
-  function makeExpectedFolder(name, folder, recipes=[]) {
-    const name = name
-      .find(name => name.id === folder.name_id)
-  
-    const folderFolders = recipes
-      .filter(recipe => recipe.folder_id === folder.id)
-  
-    const number_of_recipes = folderFolders.length
-
-  
-    return {
-      id: folder.id,
-      recipes: folder.recipes,
-      name: folder.name,
-      number_of_recipes,
-    }
-  }
-  
-
-  
   function makeExpectedFolder(name, folderId) {
     const expectedFolders = folders
       .filter(folder => folder.id === folderId)
