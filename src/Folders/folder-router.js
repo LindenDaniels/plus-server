@@ -34,7 +34,7 @@ FolderRouter
       if (!newFolder[field]) {
         logger.error(`${field} is required`)
         return res.status(400).send({
-          error: { message: ` Missing ${field}. ` }
+          error: { message: `Missing ${field}.` }
         })
       }
     }
