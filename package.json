@@ -14,7 +14,7 @@
     "deploy": "git push heroku master",
     "migrate": "postgrator --config postgrator-config.js",
     "migrate:production": "env SSL=true DATABASE_URL=$(heroku config:get DATABASE_URL) npm run migrate",
-    "migrate:test": "env NODE_ENV=test npm run migrate" 
+    "migrate:test": "env NODE_ENV=test npm run migrate"
   },
   "keywords": [],
   "author": "",
@@ -25,10 +25,10 @@
     "db-migrate": "^0.11.6",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "fsevents": "^2.1.2",
     "helmet": "^3.21.2",
     "knex": "^0.20.3",
     "morgan": "^1.9.1",
+    "npm-check": "^5.9.0",
     "pg": "^7.14.0",
     "postgrator": "^3.10.2",
     "treeize": "^2.1.2",
