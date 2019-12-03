@@ -1,4 +1,3 @@
-const express = require('express');
 const knex = require('knex')
 const app = require('./App/app')
 

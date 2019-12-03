@@ -31,8 +31,6 @@
     ]
   }
   
-
-  
   function makeExpectedList(name, list, items=[]) {
     const listName = name
       .find(name => name.id === list.name_id)
