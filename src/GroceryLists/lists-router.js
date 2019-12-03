@@ -43,7 +43,6 @@ listsRouter
   
   })
 
-
   async function checkListExists(req, res, next) {
     try {
       const list = await ListsService.getById(

@@ -2,7 +2,7 @@
   "name": "plus-server",
   "version": "1.0.0",
   "engines": {
-    "node": "10.16.3",
+    "node": "10.16.3"
   },
   "description": "",
   "main": "index.js",
@@ -14,7 +14,7 @@
     "deploy": "git push heroku master",
     "migrate": "postgrator --config postgrator-config.js",
     "migrate:production": "env SSL=true DATABASE_URL=$(heroku config:get DATABASE_URL) npm run migrate",
-    "migrate:test": "env NODE_ENV=test npm run migrate", 
+    "migrate:test": "env NODE_ENV=test npm run migrate" 
   },
   "keywords": [],
   "author": "",

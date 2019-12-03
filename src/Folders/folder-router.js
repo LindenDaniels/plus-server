@@ -12,7 +12,6 @@ const serializeFolder = folder => ({
   name: xss(folder.name)
 })
 
-
 FolderRouter
   .route('/')
 
@@ -38,7 +37,6 @@ FolderRouter
       }
     }
 
-
     FoldersService.insertFolder(
       req.app.get('db'),
       newFolder
@@ -52,7 +50,6 @@ FolderRouter
       })
       .catch(next)
   })
-
 
 FolderRouter
   .route('/:folder_id')

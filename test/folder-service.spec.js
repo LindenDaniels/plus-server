@@ -75,7 +75,6 @@ describe('Folder Endpoints', function() {
       })
     })
 })
-
     context('Given there are folders in the database', () => {
       const testFolders = makeFoldersArray()
 
