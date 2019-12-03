@@ -40,8 +40,6 @@
     ]
   }
   
-
-  
   function makeExpectedRecipe(name, folderid, ingredients, instructions) {
     const name = name
       .find(name => name.id === recipe.name_id)

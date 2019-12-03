@@ -3,7 +3,6 @@ const express = require('express')
 const xss = require('xss')
 const logger = require('../logger')
 const RecipeService = require('./recipe-service')
-//const { isWebUri } = require('valid-url')
 
 const RecipeRouter = express.Router()
 const bodyParser = express.json()
@@ -15,7 +14,6 @@ const serializeRecipe = recipe => ({
   ingredients: xss(recipe.ingredients),
   instructions: xss(recipe.instructions)
 })
-
 
 RecipeRouter
 .route('/')
@@ -31,8 +29,6 @@ RecipeRouter
 .post(bodyParser, (req, res, next) => {
   const { folderid, name, ingredients, instructions } = req.body;
   const newRecipe = { folderid, name, ingredients, instructions }
-  console.log(newRecipe);
-
 
 for (const field of ['name', 'folderid', 'ingredients', 'instructions']) {
   if (!newRecipe[field]) {
@@ -42,7 +38,6 @@ for (const field of ['name', 'folderid', 'ingredients', 'instructions']) {
     })
   }
 }
-
 
 RecipeService.insertRecipe(
   req.app.get('db'),
@@ -100,7 +95,6 @@ RecipeRouter
   .patch(bodyParser, (req, res, next) => {
     const { name, folderid, ingredients, instructions } = req.body
     const recipeToUpdate = { name, folderid, instructions, ingredients }
-
     const numberOfValues = Object.values(recipeToUpdate).filter(Boolean).length
     if (numberOfValues === 0) {
       logger.error(`Invalid update without required fields`)

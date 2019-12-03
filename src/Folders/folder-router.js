@@ -3,7 +3,6 @@ const express = require('express')
 const xss = require('xss')
 const logger = require('../logger')
 const FoldersService = require('./folder-service')
-//const { isWebUri } = require('valid-url')
 
 const FolderRouter = express.Router()
 const bodyParser = express.json()
