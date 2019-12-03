@@ -109,8 +109,4 @@ listsRouter
   })
 
 
-
-/* async/await syntax for promises */
-
-
 module.exports = listsRouter
