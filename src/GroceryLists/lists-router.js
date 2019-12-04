@@ -13,8 +13,10 @@ listsRouter
         res.json(ListsService.serializeLists(lists))
       })
      
-      .catch(next)
-      console.log(lists)
+      .catch(e => {
+        console.log(e);
+        next(e);
+       })
      
     })
   .post(bodyParser, (req, res, next) => {
