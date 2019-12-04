@@ -12,8 +12,9 @@ listsRouter
       .then(lists => {
         res.json(ListsService.serializeLists(lists))
       })
-      .catch(next)
       console.log(lists)
+      .catch(next)
+     
     })
   .post(bodyParser, (req, res, next) => {
     const { id, name, items } = req.body;
