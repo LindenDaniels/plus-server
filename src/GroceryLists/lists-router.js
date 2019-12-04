@@ -13,11 +13,11 @@ listsRouter
         res.json(ListsService.serializeLists(lists))
       })
       .catch(next)
+      console.log(lists)
     })
   .post(bodyParser, (req, res, next) => {
     const { id, name, items } = req.body;
     const newList = { id, name, items }
-    console.log(req.body);
   
   for (const field of ['name', 'items']) {
     if (!newList[field]) {
