@@ -18,6 +18,8 @@ const db = knex({
   },
 })
 
+console.log(db);
+
 const cors = require('cors');
 const {CLIENT_ORIGIN} = require('./config');
 
