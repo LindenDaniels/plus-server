@@ -10,7 +10,9 @@ listsRouter
   .get((req, res, next) => {
     /*ListsService.getAllLists(req.app.get('db'))*/
       //.then(lists => {
-        /*res.json(ListsService.serializeLists(lists)*/ res.json({status: true})
+        /*res.json(ListsService.serializeLists(lists)*/ 
+        console.log(lists);
+        res.json({status: true})
       //})
      
       .catch(e => {
