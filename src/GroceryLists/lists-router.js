@@ -10,9 +10,11 @@ listsRouter
   .get((req, res, next) => {
     ListsService.getAllLists(req.app.get('db'))
       .then(lists => {
+        console.log(lists)
         res.json(ListsService.serializeLists(lists) 
       )
-      })
+      
+    })
 
        .post(bodyParser, (req, res, next) => {
         const { id, name, items } = req.body;
