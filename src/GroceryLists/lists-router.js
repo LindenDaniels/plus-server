@@ -13,9 +13,7 @@ listsRouter
         res.json(/*ListsService.serializeLists(lists)*/ res.json({status: true}))
       })
      
-      .catch(e => {
-
-        next(e);
+      .catch(next)
        })
 
        .post(bodyParser, (req, res, next) => {
