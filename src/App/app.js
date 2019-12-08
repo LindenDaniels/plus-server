@@ -20,11 +20,9 @@ app.use(helmet())
 
 app.use('/api/recipes', RecipesRouter)
 app.use('/api/lists', GroceryListRouter)
-//app.use('/api/folders', FoldersRouter)
+app.use('/api/folders', FoldersRouter)
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!')
-})
+
 
 app.use(errorHandler)
 

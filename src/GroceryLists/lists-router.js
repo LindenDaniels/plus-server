@@ -14,7 +14,7 @@ listsRouter
       })
      
       .catch(e => {
-        console.log(e);
+
         next(e);
        })
 
