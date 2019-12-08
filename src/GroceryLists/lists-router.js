@@ -12,7 +12,8 @@ listsRouter
       //.then(lists => {
         /*res.json(ListsService.serializeLists(lists)*/ 
         console.log(lists);
-        res.json({status: true})
+  })
+        //res.json({status: true})
       //})
      
       .catch(e => {
