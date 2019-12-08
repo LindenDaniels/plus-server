@@ -15,6 +15,7 @@ listsRouter
       )
       
     })
+  })
 
        .post(bodyParser, (req, res, next) => {
         const { id, name, items } = req.body;
@@ -108,7 +109,7 @@ listsRouter
           .catch(next)
       })
      
-    })
+    
   
 
 
