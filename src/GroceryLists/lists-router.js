@@ -8,12 +8,14 @@ const listsRouter = express.Router()
 listsRouter
   .route('/')
   .get((req, res, next) => {
-    ListsService.getAllLists(req.app.get('db'))
-      .then(lists => {
-        res.json(/*ListsService.serializeLists(lists)*/ res.json({status: true}))
-      })
+    /*ListsService.getAllLists(req.app.get('db'))*/
+      //.then(lists => {
+        /*res.json(ListsService.serializeLists(lists)*/ res.json({status: true}))
+      //})
      
-      .catch(next)
+      .catch(e => {
+
+        next(e);
        })
 
        .post(bodyParser, (req, res, next) => {
