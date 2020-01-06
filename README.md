@@ -140,22 +140,24 @@ This is the API for the Grocery Plus app found here: https://github.com/LindenDa
   </li>
   <li>URL Params<br>
     Required:<br/>
-    <code>folder_id=[integer]</code><br/>
-    <code>name=[text]</code>
+    <code>folderid=[integer]</code><br/>
+    <code>name=[text]</code><br/>
+    <code>instructions=[text]</code><br/>
+    <code>ingredients=[text]</code><br/>
   </li>
   <li>Data Params<br>
     None
   </li>
   <li>Success Response<br>
     Code: 201<br />
-    Content: <code>Folder with id ${folder.id} created.</code>
+    Content: <code>Recipe with id ${recipe.id} created.</code>
   </li>
   <li>Error Response<br>
     Code: 400<br />
-    Content: <code>error: { message: `Missing ${field}.` }</code>
+    Content: <code>error: { message: `Field '${field}' is required` }</code>
   </li>
   <li>Sample Call:
-    <code>return fetch(`${config.API_ENDPOINT}/folders`, {<br>
+    <code>return fetch(`${config.API_ENDPOINT}/recipes`, {<br>
       headers: {<br>
       },<br>
     })<br>
