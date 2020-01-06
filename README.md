@@ -65,6 +65,8 @@ This is the API for the Grocery Plus app found here: https://github.com/LindenDa
       )},</code>
   </li>
   <br/>
+  
+  <h3>Get Folders by ID</h3>
 <ul>Gets recipes in a single folder.<br/>
   <li>URL<br/>
     /folders/:folder_Id
