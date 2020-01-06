@@ -34,6 +34,36 @@ This is the API for the Grocery Plus app found here: https://github.com/LindenDa
           : res.json()<br>
       )},</code>
   </li>
+  <li>Method:<br/>
+    <code>POST</code>
+  </li>
+  <li>URL Params<br>
+    Required:<br/>
+    <code>id=[integer]</code><br/>
+    <code>name=[text]</code>
+  </li>
+  <li>Data Params<br>
+    None
+  </li>
+  <li>Success Response<br>
+    Code: 201<br />
+    Content: <code>Folder with id ${folder.id} created.</code>
+  </li>
+  <li>Error Response<br>
+    Code: 400<br />
+    Content: <code>error: { message: `Missing ${field}.` }</code>
+  </li>
+  <li>Sample Call:
+    <code>return fetch(`${config.API_ENDPOINT}/folders`, {<br>
+      headers: {<br>
+      },<br>
+    })<br>
+      .then(res => <br>
+         (!res.ok)<br>
+          ? res.json().then(e => Promise.reject(e))<br>
+          : res.json()<br>
+      )},</code>
+  </li>
   <br/>
 <ul>Gets recipes in a single folder.<br/>
   <li>URL<br/>
