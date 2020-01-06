@@ -34,5 +34,39 @@ This is the API for the Grocery Plus app found here: https://github.com/LindenDa
           : res.json()<br>
       )},</code>
   </li>
+  <br/>
+<ul>Gets recipes in a single folder.<br/>
+  <li>URL<br/>
+    /folders/:folder_Id
+  </li>
+  <li>Method:<br/>
+    <code>GET</code>
+  </li>
+  <li>URL Params<br>
+    None
+  </li>
+  <li>Data Params<br>
+    None
+  </li>
+  <li>Success Response<br>
+    Code: 200<br />
+    Content: <code>{"id":1,"name":"Christmas","items":"Cookies, Almond Milk, Wrapping Paper, Chocolate chips"}</code>
+  </li>
+  <li>Error Response<br>
+    Code: 404 NOT FOUND<br />
+    Content: <code>Cannot GET</code>
+  </li>
+  <li>Sample Call:
+    <code>return fetch(`${config.API_ENDPOINT}/folders`, {<br>
+      headers: {<br>
+      },<br>
+    })<br>
+      .then(res => <br>
+         (!res.ok)<br>
+          ? res.json().then(e => Promise.reject(e))<br>
+          : res.json()<br>
+      )},</code>
+  </li>
 
+Technology Used: Node, Express
 Technology Used: Node, Express
