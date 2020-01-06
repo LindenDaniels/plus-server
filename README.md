@@ -170,31 +170,31 @@ This is the API for the Grocery Plus app found here: https://github.com/LindenDa
   </ul>
   <br/>
   
-  <h3>Get Folders by ID</h3>
-<ul>Gets recipes in a single folder.<br/>
+  <h3>Get Recipe by ID</h3>
+<ul>Get a single recipe.<br/>
   <li>URL<br/>
-    /folders/:folder_Id
+    /folders/:recipe_id
   </li>
   <li>Method:<br/>
     <code>GET</code>
   </li>
   <li>URL Params<br>
     Required:<br/>
-    <code>folder_id=[integer]</code>
+    <code>recipe_id=[integer]</code>
   </li>
   <li>Data Params<br>
     None
   </li>
   <li>Success Response<br>
     Code: 200<br />
-    Content: <code>{"id":1,"name":"Breakfast"}</code>
+    Content: <code>{"id":1,"folderid":4,"name":"Cheesecake","ingredients":"Lorem ipsum","instructions":"Corporis accusamus placeat quas non voluptas. Harum fugit molestias qui. Velit ex animi reiciendis quasi.}</code>
   </li>
   <li>Error Response<br>
     Code: 404 NOT FOUND<br />
-    Content: <code>Folder with id ${folder} not found.</code>
+    Content: <code>Folder with id ${recipe} not found.</code>
   </li>
   <li>Sample Call:
-    <code>return fetch(`${config.API_ENDPOINT}/folders/${folder_id}`, {
+    <code>return fetch(`${config.API_ENDPOINT}/recipes/${recipe_id}`, {
       headers: {
       },
     })
